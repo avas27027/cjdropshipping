@@ -1,0 +1,24 @@
+POST http://localhost:3000/api/order/add
+content-type: application/json
+{
+    "orderNumber": "1235",
+    "shippingZip": "123",
+    "shippingCountryCode": "US",
+    "shippingCountry": "123",
+    "shippingProvince": "123",
+    "shippingCity": "132",
+    "shippingAddress": "123213",
+    "shippingCustomerName": "joe 1",
+    "shippingPhone": "111",
+    "remark": "note",
+    "fromCountryCode": "CN",
+    "logisticName": "PostNL",
+    "houseNumber": "123",
+    "products": [
+        {
+            "vid": "92511400-C758-4474-93CA-66D442F5F787",
+            "quantity": 2,
+            "shippingName": "123"
+        }
+    ]
+}
