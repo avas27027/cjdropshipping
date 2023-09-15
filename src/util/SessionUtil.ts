@@ -65,7 +65,7 @@ function clearCookie(res: Response): Response {
  */
 function _sign(data: string | object | Buffer): Promise<string> {
   return new Promise((res, rej) => {
-    jsonwebtoken.sign(data, EnvVars.Jwt.Secret, Options, (err, token) => {
+    jsonwebtoken.sign(data, EnvVars.Jwt.Secret, Options, (err:any, token:any) => {
       return err ? rej(err) : res(token || '');
     });
   });
@@ -76,7 +76,7 @@ function _sign(data: string | object | Buffer): Promise<string> {
  */
 function _decode<T>(jwt: string): Promise<string | undefined | T> {
   return new Promise((res, rej) => {
-    jsonwebtoken.verify(jwt, EnvVars.Jwt.Secret, (err, decoded) => {
+    jsonwebtoken.verify(jwt, EnvVars.Jwt.Secret, (err: any, decoded: any) => {
       return err ? rej(Errors.Validation) : res(decoded as T);
     });
   });
