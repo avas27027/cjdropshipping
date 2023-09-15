@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require('fs');
 const KeyRepo_1 = __importDefault(require("@src/repos/KeyRepo"));
 const EnvVars_1 = __importDefault(require("@src/constants/EnvVars"));
+const delay = (ms = 2000) => new Promise(r => setTimeout(r, ms));
 function newKey() {
     return __awaiter(this, void 0, void 0, function* () {
         const keyPost = KeyRepo_1.default.add;
@@ -39,7 +40,8 @@ function getKey() {
                 return yield KeyRepo_1.default.get();
         }
         else {
-            setTimeout(newKey, 60000);
+            yield delay();
+            yield newKey();
             return yield KeyRepo_1.default.get();
         }
     });

@@ -3,6 +3,7 @@ import { IKey } from '@src/models/Key';
 import KeyRepo from '@src/repos/KeyRepo';
 import EnvVars from '@src/constants/EnvVars';
 
+const delay = (ms = 2000) => new Promise(r => setTimeout(r, ms));
 async function newKey() {
     const keyPost = KeyRepo.add
     console.log(EnvVars.CJ.username, EnvVars.CJ.password)
@@ -24,7 +25,8 @@ async function getKey(): Promise<IKey> {
         else return await KeyRepo.get()
     }
     else {
-        setTimeout(newKey,60000)
+        await delay()
+        await newKey()
         return await KeyRepo.get()
     }
 }
