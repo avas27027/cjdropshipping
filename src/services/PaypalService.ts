@@ -85,6 +85,7 @@ const captureOrder = async (orderID: string) => {
 async function handleResponse(response: any) {
   try {
     const jsonResponse = await response.json();
+    console.log(jsonResponse)
     return { jsonResponse, httpStatusCode: response.status, };
   } catch (err) {
     const errorMessage = await response.text();
