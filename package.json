@@ -1,6 +1,7 @@
 {
   "name": "express-gen-ts",
   "version": "0.0.0",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx ts-node build.ts",
     "lint": "npx eslint --ext .ts src/",
@@ -8,7 +9,9 @@
     "start": "node -r module-alias/register ./dist --env=production",
     "dev": "nodemon",
     "test": "nodemon --config ./spec/nodemon.json",
-    "test:no-reloading": "npx ts-node --files -r tsconfig-paths/register ./spec"
+    "test:no-reloading": "npx ts-node --files -r tsconfig-paths/register ./spec",
+    "deploy": "firebase deploy --only functions",
+    "serve": "npm run build && firebase emulators:start --only functions"
   },
   "nodemonConfig": {
     "watch": [
@@ -24,7 +27,7 @@
     "@src": "dist"
   },
   "engines": {
-    "node": ">=10.1.0"
+    "node": "16"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
@@ -38,7 +41,9 @@
     "jsonfile": "^6.1.0",
     "module-alias": "^2.2.3",
     "morgan": "^1.10.0",
-    "ts-command-line-args": "^2.5.1"
+    "ts-command-line-args": "^2.5.1",
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -55,6 +60,9 @@
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
     "eslint": "^8.45.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.1.0",
     "eslint-plugin-node": "^11.1.0",
     "find": "^0.3.0",
     "fs-extra": "^11.1.1",
